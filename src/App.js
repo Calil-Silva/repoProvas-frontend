@@ -4,6 +4,7 @@ import TestContext from "./contexts/TestContext";
 import { useState } from "react";
 import { GlobalStyles } from "./styles/GLobalStyles";
 import TestForm from "./pages/TestForm";
+import TestFormOptions from "./pages/TestFormOptions";
 
 function App() {
   const [tests, setTests] = useState([]);
@@ -14,7 +15,8 @@ function App() {
       <TestContext.Provider value={{ tests, setTests }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/test-form" element={<TestForm />} />
+          <Route path="/test-form" element={<TestFormOptions />} />
+          <Route path="/test-form/professor" element={<TestForm />} />
         </Routes>
       </TestContext.Provider>
     </BrowserRouter>
