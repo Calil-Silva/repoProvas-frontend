@@ -11,7 +11,7 @@ export default function Home() {
   const handleTests = () => {
     getTests().then((res) => {
       setTests(res.data);
-      navigate("/text-form");
+      navigate("/test-form");
     });
   };
 
