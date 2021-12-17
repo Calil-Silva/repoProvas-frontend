@@ -7,6 +7,8 @@ export default function Subject() {
   const [testOrder, setTestOrder] = useState({
     period: "",
     subject: "",
+    category: "",
+    professor: "",
   });
 
   const testsList = tests.tests;
@@ -31,6 +33,51 @@ export default function Subject() {
     subjectsList[i].count = count;
   }
 
+  let categories = tests.tests
+    .filter(
+      ({ periodName, subjectName }) =>
+        periodName === testOrder.period && subjectName === testOrder.subject
+    )
+    .map(({ categoryName }) => categoryName);
+
+  categories = [...new Set(categories)];
+
+  let names = tests.tests
+    .filter(
+      ({ periodName, subjectName, categoryName }) =>
+        periodName === testOrder.period &&
+        subjectName === testOrder.subject &&
+        categoryName === testOrder.category
+    )
+    .map(({ testName }) => testName);
+
+  names = [...new Set(names)];
+
+  let professors = tests.tests
+    .filter(
+      ({ periodName, subjectName, categoryName, testName }) =>
+        periodName === testOrder.period &&
+        subjectName === testOrder.subject &&
+        categoryName === testOrder.category &&
+        testName === testOrder.name
+    )
+    .map(({ professorName }) => professorName);
+
+  professors = [...new Set(professors)];
+
+  const orderedTestLink = tests.tests.filter((test) => {
+    const item =
+      test.testName === testOrder.name &&
+      test.categoryName === testOrder.category &&
+      test.subjectName === testOrder.subject &&
+      test.professorName === testOrder.professor &&
+      test.periodName === testOrder.period;
+
+    if (item) return true;
+
+    return false;
+  });
+
   return (
     <form>
       <select
@@ -38,6 +85,7 @@ export default function Subject() {
           setTestOrder({
             period: periodsList[e.target.selectedIndex - 1],
             subject: "",
+            category: "",
           })
         }
       >
@@ -62,6 +110,51 @@ export default function Subject() {
           </option>
         ))}
       </select>
+
+      <select
+        onChange={(e) =>
+          setTestOrder({
+            ...testOrder,
+            category: categories[e.target.selectedIndex - 1],
+          })
+        }
+      >
+        <option>-selecione-</option>
+        {categories.map((category) => (
+          <option key={category}>{category}</option>
+        ))}
+      </select>
+
+      <select
+        onChange={(e) =>
+          setTestOrder({
+            ...testOrder,
+            name: names[e.target.selectedIndex - 1],
+          })
+        }
+      >
+        <option>-selecione-</option>
+        {names.map((name) => (
+          <option key={name}>{name}</option>
+        ))}
+      </select>
+
+      <select
+        onChange={(e) =>
+          setTestOrder({
+            ...testOrder,
+            professor: professors[e.target.selectedIndex - 1],
+          })
+        }
+      >
+        <option>-selecione-</option>
+        {professors.map((professors) => (
+          <option key={professors}>{professors}</option>
+        ))}
+      </select>
+
+      {orderedTestLink &&
+        orderedTestLink.map(({ link }) => <a href={link}>Acessar</a>)}
     </form>
   );
 }
