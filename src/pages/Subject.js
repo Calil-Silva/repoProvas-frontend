@@ -16,25 +16,24 @@ export default function Subject() {
     return arr;
   }, []);
 
+  const subjectsList = tests.subjects;
+
   let subjectsByPeriods = tests.tests.reduce((arr, test) => {
     arr.push({ subject: test.subjectName, period: test.periodName });
     return arr;
   }, []);
 
-  for (let i = 0; i < subjectsByPeriods.length - 1; i++) {
-    let count = 1;
-    for (let j = i + 1; j < subjectsByPeriods.length; j++) {
+  for (let i = 0; i < subjectsList.length; i++) {
+    let count = 0;
+    for (let j = 0; j < testsList.length; j++) {
       if (
-        subjectsByPeriods[i].subject === subjectsByPeriods[j].subject &&
-        subjectsByPeriods[i].period === subjectsByPeriods[j].period
+        testOrder.period === testsList[j].periodName &&
+        subjectsList[i].subject_name === testsList[j].subjectName
       ) {
-        subjectsByPeriods.splice(j, 1);
         count++;
-        j--;
       }
     }
-
-    subjectsByPeriods[i].count = count;
+    subjectsList[i].count = count;
   }
 
   subjectsByPeriods = subjectsByPeriods.filter(
@@ -53,7 +52,7 @@ export default function Subject() {
   //     };
   // }
 
-  console.log(testOrder);
+  console.log(testsList);
 
   return (
     <form>
@@ -75,14 +74,14 @@ export default function Subject() {
         onChange={(e) =>
           setTestOrder({
             ...testOrder,
-            subject: subjectsByPeriods[e.target.selectedIndex - 1].subject,
+            subject: subjectsList[e.target.selectedIndex - 1].subject_name,
           })
         }
       >
         <option>-selecione-</option>
-        {subjectsByPeriods.map(({ subject, count }) => (
-          <option key={subject}>
-            {subject} ({count || 1})
+        {subjectsList.map(({ subject_name, count }) => (
+          <option key={subject_name}>
+            {subject_name} ({count || 0})
           </option>
         ))}
       </select>
