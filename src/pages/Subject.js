@@ -18,11 +18,6 @@ export default function Subject() {
 
   const subjectsList = tests.subjects;
 
-  let subjectsByPeriods = tests.tests.reduce((arr, test) => {
-    arr.push({ subject: test.subjectName, period: test.periodName });
-    return arr;
-  }, []);
-
   for (let i = 0; i < subjectsList.length; i++) {
     let count = 0;
     for (let j = 0; j < testsList.length; j++) {
@@ -35,24 +30,6 @@ export default function Subject() {
     }
     subjectsList[i].count = count;
   }
-
-  subjectsByPeriods = subjectsByPeriods.filter(
-    ({ period }) => period === testOrder.period
-  );
-
-  // for (let i = 0; i < periodsList.length; i++) {
-  //   let count = 0;
-  //     for (let j = 0; j < subjectsByPeriods.length; j++) {
-  //       if (periodsList[i] === subjectsByPeriods[j].period) {
-  //         count++;
-  //       }
-  //     }
-  //     const handleTestsBySubject = {
-  //       subject: subjectsByPeriods[j].subjectName,
-  //     };
-  // }
-
-  console.log(testsList);
 
   return (
     <form>
