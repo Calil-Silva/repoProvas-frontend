@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import TestContext from "../contexts/TestContext";
 import { getTests } from "../services/repoProvas";
 import { Button } from "../styles/sharedStyles";
@@ -19,7 +19,9 @@ export default function Home() {
     <div>
       <>
         <Button onClick={handleTests}>Visualizar prova</Button>
-        <Button>Compartilhar prova</Button>
+        <Link to="/test-creation">
+          <Button>Compartilhar prova</Button>
+        </Link>
       </>
     </div>
   );
