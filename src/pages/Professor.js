@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useContext } from "react/cjs/react.development";
 import TestContext from "../contexts/TestContext";
 
-export default function TestForm() {
+export default function Professor() {
   const { tests } = useContext(TestContext);
 
   const [testOrder, setTestOrder] = useState({

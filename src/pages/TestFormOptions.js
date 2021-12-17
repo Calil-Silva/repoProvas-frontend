@@ -7,7 +7,9 @@ export default function TestFormOptions() {
       <Link to="/test-form/professor">
         <Button>Listar provas por professor</Button>
       </Link>
-      <Button>Listar provas por disciplina</Button>
+      <Link to="/test-form/subject">
+        <Button>Listar provas por disciplina</Button>
+      </Link>
     </div>
   );
 }
