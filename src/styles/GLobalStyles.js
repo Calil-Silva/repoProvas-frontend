@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import hacker from "../assets/images/hacking.jpg";
 
 export const GlobalStyles = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -32,8 +33,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-    background-color: #6d7ce4;
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-image: url(${hacker});
 }
     }
     button {
@@ -59,7 +60,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-* {
-        box-sizing: border-box;
-    }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+
+    :root {
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
+  }
 `;
