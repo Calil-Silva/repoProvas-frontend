@@ -1,49 +1,17 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
-import TestContext from "../contexts/TestContext";
-import { getTests, getTestsParams } from "../services/repoProvas";
-import { storeTestCreationParams } from "../services/testCreationPersistence";
-import { storeTestsArray } from "../services/testPersistence";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-export default function Home() {
-  const navigate = useNavigate();
-  const { setTests, setTestsParams } = useContext(TestContext);
-
-  const handleTests = () => {
-    getTests().then((res) => {
-      setTests(res.data);
-      storeTestsArray(res.data);
-      navigate("/test-form");
-    });
-  };
-
-  const handleTestsParams = () => {
-    getTestsParams()
-      .then((res) => {
-        setTestsParams(res.data);
-        storeTestCreationParams(res.data);
-        navigate("/test-creation");
-      })
-      .catch(() => {
-        alert("Ocorreu um erro inesperado, tente novamente mais tarde");
-        navigate("/");
-      });
-  };
-
+export default function TestFormOptions() {
   return (
     <OuterContainer>
-      <Title>
-        <div>
-          <h2>RepoProvas</h2>
-        </div>
-      </Title>
       <OptionContainer>
         <div>
-          <h1>Visualizar prova</h1>
+          <h1>Ver provas por professor</h1>
         </div>
         <Close>
-          <span onClick={handleTests}>Acessar</span>
+          <Link to="/test-form/professor">
+            <span>Ver</span>
+          </Link>
           <svg width="15px" height="10px" viewBox="0 0 13 10">
             <path d="M1,5 L11,5"></path>
             <polyline points="8 1 12 5 8 9"></polyline>
@@ -52,10 +20,12 @@ export default function Home() {
       </OptionContainer>
       <OptionContainer>
         <div>
-          <h1>Compartilhar prova</h1>
+          <h1>Ver provas por disciplina</h1>
         </div>
         <Close>
-          <span onClick={handleTestsParams}>Acessar</span>
+          <Link to="/test-form/subject">
+            <span>Ver</span>
+          </Link>
           <svg width="15px" height="10px" viewBox="0 0 13 10">
             <path d="M1,5 L11,5"></path>
             <polyline points="8 1 12 5 8 9"></polyline>
@@ -66,28 +36,6 @@ export default function Home() {
   );
 }
 
-const cursorBlink = keyframes`
-    0%,
-     75% {
-         opacity: 1
-     }
-     76%,
-     100% {
-         opacity: 0
-     }
-`;
-
-const type = keyframes`
-    0%,
-     100% {
-         width: 0px
-     }
-     30%,
-     60% {
-         width: 100%;
-     }
-`;
-
 const OuterContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -95,40 +43,6 @@ const OuterContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-`;
-
-const Title = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 6rem;
-  background-size: 100%;
-  z-index: 0;
-
-  div::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 2px;
-    height: 100%;
-    background: #fff;
-    animation: ${cursorBlink} 0.8s steps(3) infinite;
-  }
-  div {
-    position: relative;
-    -webkit-box-reflect: below 1px linear-gradient(transparent, #3333);
-    h2 {
-      position: relative;
-      color: #fff;
-      letter-spacing: 5px;
-      font-size: 2rem;
-      overflow: hidden;
-      margin-bottom: 0;
-      animation: ${type} 5s steps(11) infinite;
-    }
-  }
 `;
 
 const OptionContainer = styled.div`

@@ -3,6 +3,9 @@ import Home from "./pages/Home";
 import TestContext from "./contexts/TestContext";
 import { useState } from "react";
 import { GlobalStyles } from "./styles/GLobalStyles";
+import TestFormOptions from "./pages/TestFormOptions";
+import Professor from "./pages/Professor";
+import Subject from "./pages/Subject";
 import TestCreation from "./pages/TestCreation";
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/test-form" element={<TestFormOptions />} />
+          <Route path="/test-form/professor" element={<Professor />} />
+          <Route path="/test-form/subject" element={<Subject />} />
           <Route path="/test-creation" element={<TestCreation />} />
         </Routes>
       </TestContext.Provider>
