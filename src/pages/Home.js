@@ -124,6 +124,7 @@ const Title = styled.div`
       color: #fff;
       letter-spacing: 5px;
       font-size: 2rem;
+      font-weight: bold;
       overflow: hidden;
       margin-bottom: 0;
       animation: ${type} 5s steps(11) infinite;
