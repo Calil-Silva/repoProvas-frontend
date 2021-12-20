@@ -104,7 +104,7 @@ const Title = styled.div`
   width: 100%;
   height: 6rem;
   background-size: 100%;
-  z-index: 0;
+  margin-bottom: 2rem;
 
   div::before {
     content: "";
@@ -210,6 +210,7 @@ const Close = styled.button`
       rgba(255, 0, 0, 1) 100%,
       rgba(223, 19, 26, 1) 100%
     );
+    cursor: pointer;
   }
 
   :hover svg {
