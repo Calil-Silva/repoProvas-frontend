@@ -167,6 +167,7 @@ const Close = styled.button`
   padding: 10px 18px;
   transition: all 0.2s ease;
   background: none;
+  cursor: pointer;
 
   :before {
     content: "";
@@ -210,7 +211,6 @@ const Close = styled.button`
       rgba(255, 0, 0, 1) 100%,
       rgba(223, 19, 26, 1) 100%
     );
-    cursor: pointer;
   }
 
   :hover svg {
