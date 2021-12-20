@@ -42,9 +42,7 @@ export default function TestCreation() {
   return (
     <Container>
       <Form>
-        <StepsTitle disabled={false}>
-          Por favor, digite o nome da prova aplicada
-        </StepsTitle>
+        <StepsTitle>Por favor, digite o nome da prova aplicada</StepsTitle>
         <Input
           type="text"
           placeholder="Nome da prova"
@@ -159,6 +157,8 @@ const StepsTitle = styled.h2`
   color: greenyellow;
   opacity: ${({ disabled }) => (disabled ? 0 : 1)};
   transition: 1s all;
+  cursor: default;
+  user-select: none;
 `;
 
 const Input = styled.input`
@@ -175,16 +175,17 @@ const Input = styled.input`
     disabled ? "rgb(240, 240, 240)" : "#fff"};
   opacity: ${({ disabled }) => (disabled ? 0 : 1)};
   transition: 1s all;
+  cursor: ${({ disabled }) => (disabled ? "inherit" : "text")};
 
   ::placeholder {
     color: ${({ disabled }) => (disabled ? "rgb(190, 190, 190)" : "#000")};
   }
 
   &:last-child {
-    cursor: pointer;
+    cursor: ${({ disabled }) => (disabled ? "inherit" : "pointer")};
     font-weight: bold;
     :hover {
-      opacity: 0.95;
+      opacity: ${({ disabled }) => (disabled ? 0 : 0.95)};
     }
     background-color: rgb(150, 150, 150);
     opacity: ${({ disabled }) => (disabled ? 0 : 1)};
@@ -200,7 +201,7 @@ const Select = styled.select`
   border: 1px solid var(--select-border);
   border-radius: 0.25em;
   font-size: 1rem;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "inherit" : "pointer")};
   line-height: 1.1;
   background-color: #fff;
   opacity: ${({ disabled }) => (disabled ? 0 : 1)};
