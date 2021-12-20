@@ -2,12 +2,16 @@ import axios from "axios";
 
 const URL = process.env.REACT_APP_API_URL;
 
-function setConfig(token) {
-  return { headers: { Authorization: `Bearer ${token}` } };
-}
-
 function getTests() {
   return axios.get(`${URL}/test-form`);
 }
 
-export { getTests };
+function getTestsParams() {
+  return axios.get(`${URL}/test-creation`);
+}
+
+function postTestsParams(params) {
+  return axios.post(`${URL}/test-creation`, params);
+}
+
+export { getTests, getTestsParams, postTestsParams };
